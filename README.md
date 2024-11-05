@@ -91,5 +91,3 @@ After submitting payment on the checkout page, users are redirected to either a 
 ## License
 
 This project is licensed under the MIT License.
-
----
