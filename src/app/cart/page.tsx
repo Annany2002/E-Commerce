@@ -22,10 +22,12 @@ export default function CartPage() {
           <h1 className="text-3xl font-bold">Your Cart</h1>
           <p className="font-medium">
             Total Price : ${" "}
-            {cartItems.reduce(
-              (acc, item) => acc + item.product.price * item.quantity,
-              0
-            )}
+            {cartItems
+              .reduce(
+                (acc, item) => acc + item.product.price * item.quantity,
+                0
+              )
+              .toPrecision(4)}
           </p>
           {cartItems.length > 0 && (
             <>
@@ -54,12 +56,13 @@ export default function CartPage() {
             </div>
 
             <div className="w-full text-center mt-4">
-              <button
+              <Link
+                href={"/checkout"}
                 className="w-28 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition"
                 aria-label="Proceed to Checkout"
               >
                 Checkout
-              </button>
+              </Link>
             </div>
           </>
         )}

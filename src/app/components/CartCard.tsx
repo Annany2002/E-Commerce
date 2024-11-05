@@ -1,10 +1,12 @@
 import { CartItem } from "@/types/CartItemTypes";
 import { useCartStore } from "@/zustand/cartStore";
+import { usePriceStore } from "@/zustand/priceStore";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
 
 export default function CartCard({ cartItem }: { cartItem: CartItem }) {
   const { cartItems, setCartItems } = useCartStore();
+  const { totalPrice, setTotalPrice } = usePriceStore();
 
   const increaseCartQuantity = (id: number) => {
     const updatedCartItems = cartItems.map((item) => {
@@ -14,6 +16,12 @@ export default function CartCard({ cartItem }: { cartItem: CartItem }) {
       return item;
     });
     setCartItems(updatedCartItems);
+    setTotalPrice(
+      updatedCartItems.reduce(
+        (acc, item) => acc + item.product.price * item.quantity,
+        0
+      )
+    );
     localStorage.setItem("cart", JSON.stringify(updatedCartItems));
   };
 
@@ -32,8 +40,16 @@ export default function CartCard({ cartItem }: { cartItem: CartItem }) {
     }
 
     setCartItems(updatedCartItems);
+    setTotalPrice(
+      updatedCartItems.reduce(
+        (acc, item) => acc + item.product.price * item.quantity,
+        0
+      )
+    );
     localStorage.setItem("cart", JSON.stringify(updatedCartItems));
   };
+
+  console.log(totalPrice);
 
   return (
     <div className="w-full p-4 bg-gray-100">
@@ -41,6 +57,11 @@ export default function CartCard({ cartItem }: { cartItem: CartItem }) {
         <div className="flex w-full gap-2 items-center justify-start">
           <div>
             <Image
+              style={{
+                width: "auto",
+                height: "auto",
+              }}
+              priority
               src={cartItem.product.image}
               alt="Product-Image"
               width={60}

@@ -16,6 +16,11 @@ export default function ProductCard({ product }: { product: Product }) {
         </Link>
       </div>
       <Image
+        style={{
+          width: "auto",
+          height: "auto",
+        }}
+        priority
         className="object-cover self-center rounded-md"
         width={150}
         height={140}

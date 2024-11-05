@@ -7,11 +7,13 @@ import { Product } from "@/types/ProductTypes";
 import { useProductStore } from "@/zustand/productsStore";
 import { useCartStore } from "@/zustand/cartStore";
 import { CartItem } from "@/types/CartItemTypes";
+import { usePriceStore } from "@/zustand/priceStore";
 
 export default function ProductPage({ params }: { params: { id: string } }) {
-  const [loading, setLoading] = useState<boolean>(false);
-  const { product, setProduct } = useProductStore();
   const { setCartItems } = useCartStore();
+  const { product, setProduct } = useProductStore();
+  const { setTotalPrice } = usePriceStore();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +40,11 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
     const updateCart = (newCartItems: CartItem[]) => {
       localStorage.setItem("cart", JSON.stringify(newCartItems));
+      const totalPrice = newCartItems.reduce(
+        (acc, item) => acc + item.product.price * item.quantity,
+        0
+      );
+      setTotalPrice(totalPrice);
       setCartItems(newCartItems);
     };
 
