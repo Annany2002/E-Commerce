@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
-import ProductCard from "./components/ProductCard";
+import ProductCard from "../components/ProductCard";
 import { useProductsStore } from "@/zustand/productsStore";
 
 export default function Home() {

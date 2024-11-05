@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mock eCommerce Website
+
+This project is a mock eCommerce application built with Next.js, TypeScript, and Zustand for state management. It includes a basic shopping experience with a homepage, product listing, product detail, checkout flow, and simulated payment success/failure pages.
+
+## Features
+
+- **Homepage**: Displays featured products and categories.
+- **Product Listing Page**: Lists all products with sorting and filtering options.
+- **Product Detail Page**: Shows details of each product with an option to add to cart.
+- **Checkout Page**: Allows users to review their cart and proceed to payment.
+- **Mock Payment Success/Failure Page**: Simulates a payment outcome after checkout.
+
+## Tech Stack
+
+- **Frontend and Backend**: [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Mock APIs**: [API](https://fakestoreapi.com/products)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (>= 14.x)
+- Yarn or npm for package management
+
+### Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/Annany2002/E-Commerce.git
+   cd mock-ecommerce
+   ```
+
+2. **Install Dependencies**
+
+   ```bash
+   yarn install
+   # or
+   npm install
+   ```
+
+3. **Run the server**
+
+   ```bash
+   npm run dev
+   ```
+
+### Project Structure
+
+- **`/src/components`**: Reusable UI components (e.g., Navbar, ProductCard, CartSummary).
+- **`/src/cart`**: cart page.
+- **`/src/checkout`**: checkout page.
+- **`/src/product`**: product page.
+- **`/src/product/[id]`**: product page with id.
+- **`/src/types`**: various types for product and cart items.
+- **`/src/zustand`**: Zustand store setup for global state management (e.g., cart items).
+- **`/src/api`**: Helper functions to call backend APIs.
+
+### Running the Application
+
+Run the Next.js development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 # or
-pnpm dev
-# or
-bun dev
+npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. **Homepage**
 
-## Learn More
+The homepage (`/`) displays shows all products with optional sorting and filtering. Clicking on a product navigates to the product detail page.
 
-To learn more about Next.js, take a look at the following resources:
+### 2. **Product Detail Page**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+On the product detail page (`/product/[id]`), users can view product details and add the item to the cart. The cart state is managed using Zustand.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. **Checkout Page**
 
-## Deploy on Vercel
+The checkout page (`/checkout`) displays the cart items, calculates totals, and provides a form to simulate payment.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. **Mock Payment Success/Failure Pages**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+After submitting payment on the checkout page, users are redirected to either a success page (`/success`) or a failure page (`/failure`) based on a simulated API response.
+
+## License
+
+This project is licensed under the MIT License.
+
+---

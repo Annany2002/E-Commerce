@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import CartCard from "../components/CartCard";
+import CartCard from "../../components/CartCard";
 import Link from "next/link";
 import { useCartStore } from "@/zustand/cartStore";
 
